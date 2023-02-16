@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Solicitar Productos</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <form [formGroup]="form">
+    <ion-list class="form">
+      <ion-item>
+        <ion-label position="floating">Marca <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required formControlName="brand"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Módelo <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required formControlName="model"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Año <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required formControlName="year" inputmode="numeric" maxlength="4"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Cantidad <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required formControlName="qtd" inputmode="numeric" maxlength="2"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Descripción del producto <ion-text color="danger">*</ion-text></ion-label>
+        <ion-textarea formControlName="product" rows="4"></ion-textarea>
+      </ion-item>
+    </ion-list>
+    <div class="text-center my-3">
+      <ion-button (click)="onSubmit()" [disabled]="form.invalid">
+        <ion-icon slot="start" name="add"></ion-icon>
+        Adicionar
+      </ion-button>
+    </div>
+  </form>
+</ion-content>

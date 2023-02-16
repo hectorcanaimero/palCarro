@@ -19,9 +19,14 @@
     "target": "es2015",
     "module": "es2020",
     "lib": [
-      "es2018", 
+      "es2018",
       "dom"
     ],
+    "paths": {
+      "@core/*": ["src/app/core/*"],
+      "@store/*": ["src/app/store/*"],
+      "@module/*": ["src/app/modules/*"]
+    },
     "useDefineForClassFields": false
   },
   "angularCompilerOptions": {

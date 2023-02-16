@@ -1,0 +1,16 @@
+ion-header {
+  ion-toolbar {
+    --background: #424242;
+    ion-title {
+      color: #fafafa;
+      --color: #fafafa;
+    }
+  }
+}
+
+.form {
+  ion-item {
+    --padding-start: 0px;
+    --inner-padding-start: 20px;
+  }
+}

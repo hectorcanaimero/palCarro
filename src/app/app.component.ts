@@ -1,10 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { MobileService } from './core/services/mobile.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
-export class AppComponent {
-  constructor() {}
+export class AppComponent implements OnInit {
+  constructor(
+    private mobileService: MobileService,
+  ) {}
+
+  async ngOnInit() {
+    await this.mobileService.initializeApp();
+  }
 }

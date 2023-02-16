@@ -1,0 +1,13 @@
+ion-header {
+  ion-toolbar {
+    --background: #424242;
+    ion-buttons {
+      ion-button {
+        ion-icon {
+          --ionicon-stroke-width: 32px;
+          color: var(--ion-color-warning-shade);
+        }
+      }
+    }
+  }
+}
