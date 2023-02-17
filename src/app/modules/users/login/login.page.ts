@@ -12,6 +12,7 @@ import { ForgotPasswordPage } from '../forgot-password/forgot-password.page';
 })
 export class LoginPage implements OnInit {
   form!: FormGroup;
+  message!: string;
   constructor(
     private fb: FormBuilder,
     private uService: UtilsService,
@@ -34,29 +35,28 @@ export class LoginPage implements OnInit {
   async onForgot() {
     await this.uService.modal({
       mode: 'ios',
-      breakpoints: [0, .35],
-      initialBreakpoint: .35,
+      breakpoints: [0, .42],
+      initialBreakpoint: .42,
       component: ForgotPasswordPage,
     });
   }
 
-  async onSubmit() {
+  onSubmit() {
     if (this.form.invalid) return;
-    const value = this.form.value;
-    const user = await this.fireAuthService.signIn(value.email, value.password);
-    console.log('USER', user);
+    const { email, password } = this.form.value;
+    return this.fireAuthService.signIn(email, password);
   }
 
   signGoogle() {
     console.log('signGoogle');
-    this.fireAuthService.signLoginGoogle()
-    .subscribe(res => console.log(res));
+    // this.fireAuthService.signLoginGoogle()
+    // .subscribe(res => console.log(res));
   }
 
   private loadForm() {
     this.form = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
+      email: ['knaimero@gmail.com', [Validators.required, Validators.email]],
+      password: ['admin123', Validators.required],
     });
   }
 }

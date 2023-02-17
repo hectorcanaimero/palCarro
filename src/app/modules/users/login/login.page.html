@@ -2,14 +2,17 @@
   <div class="container mt-5">
     <div class="box">
       <div [formGroup]="form">
-        <ion-item>
-          <ion-label position="floating">E-Mail <ion-text color="danger">*</ion-text></ion-label>
-          <ion-input required formControlName="email" type="email"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Password <ion-text color="danger">*</ion-text></ion-label>
-          <ion-input required formControlName="password" type="password"></ion-input>
-        </ion-item>
+        <ion-list>
+          <ion-item>
+            <ion-label position="floating">E-Mail <ion-text color="danger">*</ion-text></ion-label>
+            <ion-input required formControlName="email" type="email"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Password <ion-text color="danger">*</ion-text></ion-label>
+            <ion-input required formControlName="password" type="password"></ion-input>
+          </ion-item>
+        </ion-list>
+        <p class="mt-2 mb-0 text-center text-danger">{{ message }}</p>
       </div>
       <div class="my-3">
         <ion-button (click)="onForgot()" class="mb-2" mode="ios" fill="clear" expand="full" color="primary">
@@ -24,7 +27,7 @@
           Login con Google
         </ion-button>
         <ion-button (click)="onCreate()" class="mb-2" mode="ios" fill="clear" expand="full" color="danger">
-          Registrarse
+          Registrarse con email
         </ion-button>
       </div>
     </div>

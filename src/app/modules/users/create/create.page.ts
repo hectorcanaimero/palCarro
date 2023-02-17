@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FireAuthService } from '@core/firebase/fireauth.service';
+import { UtilsService } from '@core/services/utils.service';
 
 @Component({
   selector: 'app-create',
@@ -11,15 +13,19 @@ export class CreatePage implements OnInit {
   form!: FormGroup;
   constructor(
     private fb: FormBuilder,
+    private uService: UtilsService,
+    private fireAuthService: FireAuthService,
   ) { }
 
   ngOnInit() {
     this.loadForm();
   }
 
-  onSubmit() {
+  async onSubmit() {
     if (this.form.invalid) return;
-    console.log(this.form.value);
+    const value = this.form.value;
+    await this.uService.loading({ message: 'Loading ', duration: 300});
+    this.fireAuthService.createUser(value)
   }
 
   private loadForm() {

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AlertController, AlertOptions, LoadingController,
-  LoadingOptions, ModalController, ModalOptions, ToastController, ToastOptions } from '@ionic/angular';
+  LoadingOptions, ModalController, ModalOptions, NavController, ToastController, ToastOptions } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +10,7 @@ export class UtilsService {
   constructor(
     private modalCtrl: ModalController,
     private alertCtrl: AlertController,
+    private navController: NavController,
     private loadingCtrl: LoadingController,
     private toastController: ToastController,
   ) { }
@@ -44,5 +45,9 @@ export class UtilsService {
   async presentToast(opts: ToastOptions): Promise<void> {
     const toast: HTMLIonToastElement = await this.toastController.create(opts);
     await toast.present();
+  }
+
+  navigateUrl(url: string) {
+    return this.navController.navigateRoot(url);
   }
 }

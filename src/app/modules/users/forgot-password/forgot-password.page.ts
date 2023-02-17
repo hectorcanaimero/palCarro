@@ -20,9 +20,9 @@ export class ForgotPasswordPage implements OnInit {
     this.loadForm();
   }
 
-  async onSubmit() {
-    await this.uService.loading({ message: 'Loading', duration: 1000 });
-    this.uService.modalDimiss();
+  onSubmit() {
+    if (this.form.invalid) return;
+    return this.fireAuthService.forgotPassword(this.form.value.email);
   }
 
   private loadForm() {

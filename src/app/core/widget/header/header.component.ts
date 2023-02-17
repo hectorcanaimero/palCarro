@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { UtilsService } from '@core/services/utils.service';
 
 @Component({
@@ -8,9 +8,15 @@ import { UtilsService } from '@core/services/utils.service';
 })
 export class HeaderComponent implements OnInit {
 
+  @Input() href = '';
+  @Input() backButton = false;
   constructor(
-    private uService: UtilsService
+    private uService: UtilsService,
   ) { }
 
   ngOnInit() {}
+
+  onGoPage(url: string) {
+    this.uService.navigateUrl(url);
+  }
 }
