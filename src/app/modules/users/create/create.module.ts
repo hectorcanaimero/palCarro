@@ -15,6 +15,7 @@ import { CreatePage } from './create.page';
     ReactiveFormsModule,
     CreatePageRoutingModule
   ],
-  declarations: [CreatePage]
+  declarations: [CreatePage],
+  exports: [CreatePage]
 })
 export class CreatePageModule {}

@@ -49,13 +49,12 @@ export class LoginPage implements OnInit {
 
   signGoogle() {
     console.log('signGoogle');
-    // this.fireAuthService.signLoginGoogle()
-    // .subscribe(res => console.log(res));
+    this.fireAuthService.signLoginGoogle();
   }
 
   private loadForm() {
     this.form = this.fb.group({
-      email: ['knaimero@gmail.com', [Validators.required, Validators.email]],
+      email: ['daregny@gmail.com', [Validators.required, Validators.email]],
       password: ['admin123', Validators.required],
     });
   }

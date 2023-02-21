@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UtilsService } from '@core/services/utils.service';
-import { CreateOrderPage } from '../create-order/create-order.page';
+import { CreateOrderPage } from './create-order/create-order.page';
 
 @Component({
   selector: 'app-orders',
@@ -27,9 +27,9 @@ export class OrdersPage implements OnInit {
   async onAdd() {
     await this.uService.modal({
       mode: 'ios',
-      initialBreakpoint: .8,
+      initialBreakpoint: 1,
       component: CreateOrderPage,
-      breakpoints: [0, .4, .8],
+      breakpoints: [0, .5, 1],
     });
   }
 

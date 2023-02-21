@@ -19,12 +19,8 @@ export class DiscoverComponent implements OnInit {
   async onPage(item: any) {
   }
 
-  onSwiper(swiper: any) {
-    console.log(swiper);
-  }
-  onSlideChange() {
-    console.log('slide change');
-  }
+  onSwiper(swiper: any) { }
+  onSlideChange() { }
 
 }
 

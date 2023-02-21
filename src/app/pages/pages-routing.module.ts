@@ -17,11 +17,6 @@ const routes: Routes = [
         loadChildren: () => import('@module/orders/orders.module').then(m => m.OrdersPageModule)
       },
       {
-        path: 'create',
-        loadChildren: () =>
-          import('@module/create-order/create-order.module').then(m => m.CreateOrderPageModule)
-      },
-      {
         path: 'menu',
         loadChildren: () =>
           import('@module/menu/menu.module').then(m => m.MenuPageModule)

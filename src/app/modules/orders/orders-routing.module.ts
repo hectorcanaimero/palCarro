@@ -7,7 +7,12 @@ const routes: Routes = [
   {
     path: '',
     component: OrdersPage
-  }
+  },
+  {
+    path: 'create',
+    loadChildren: () =>
+      import('@module/orders/create-order/create-order.module').then(m => m.CreateOrderPageModule)
+  },
 ];
 
 @NgModule({

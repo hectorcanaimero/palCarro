@@ -7,4 +7,9 @@ export interface User {
   address?: any;
   createdAt?: any;
   password: string;
+  photoURL?: string;
+  displayName?: string;
+  provide?: string;
+  myCustomData?: string;
+  lastLoginAt?: any;
 }

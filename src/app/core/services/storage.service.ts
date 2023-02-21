@@ -11,7 +11,7 @@ export class StorageService {
   };
 
   async find(key: string): Promise<any>{
-    const { value } = await Preferences.get({ key });
+    const { value }: any = await Preferences.get({ key });
     return JSON.parse(value);
   };
 

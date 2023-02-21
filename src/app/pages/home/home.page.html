@@ -1,7 +1,7 @@
 <app-header></app-header>
 <ion-content>
-  <ion-toolbar>
-    <ion-title color="warning">Holá, Alejandro</ion-title>
+  <ion-toolbar mode="md">
+    <ion-title color="warning">Holá, {{ user?.displayName }}</ion-title>
   </ion-toolbar>
   <app-menus></app-menus>
   <app-slides></app-slides>

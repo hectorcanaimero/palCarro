@@ -50,4 +50,10 @@ export class UtilsService {
   navigateUrl(url: string) {
     return this.navController.navigateRoot(url);
   }
+  navigateFoward(url: string) {
+    return this.navController.navigateForward(url);
+  }
+  navigateBack(url: string) {
+    return this.navController.navigateBack(url);
+  }
 }

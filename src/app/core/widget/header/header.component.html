@@ -1,14 +1,16 @@
 <ion-header class="ion-no-border">
   <ion-toolbar mode="ios">
     <ion-buttons slot="start">
-      <ng-container *ngIf="backButton">
-        <ion-button (click)="onGoPage(href)">
-          <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+      <ng-container *ngIf="backButton; else menu">
+        <ion-button (click)="onGoHome(href)">
+          <ion-icon slot="icon-only" name="home" color="warning"></ion-icon>
         </ion-button>
       </ng-container>
-      <ion-button class="person" (click)="onGoPage('/pages/menu')">
-        <ion-icon slot="icon-only" name="menu-outline"></ion-icon>
-      </ion-button>
+      <ng-template #menu>
+        <ion-button class="person" (click)="onGoPage('/pages/menu')">
+          <ion-icon slot="icon-only" name="menu-outline"></ion-icon>
+        </ion-button>
+      </ng-template>
     </ion-buttons>
     <ion-title></ion-title>
     <ion-buttons slot="end">

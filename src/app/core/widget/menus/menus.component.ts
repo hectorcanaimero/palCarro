@@ -17,7 +17,7 @@ export class MenusComponent implements OnInit {
   ngOnInit() {}
 
   onGoPage(url: string) {
-    this.uService.navigateUrl(url);
+    this.uService.navigateFoward(url);
   }
 
   onToggle() {
@@ -45,7 +45,7 @@ export const mockMenusData = [
   {
     icon: 'person-outline',
     title: 'Perfil',
-    action: ''
+    action: '/users/profile'
   },
   {
     icon: 'notifications-outline',

@@ -24,6 +24,7 @@ export class CreatePage implements OnInit {
   async onSubmit() {
     if (this.form.invalid) return;
     const value = this.form.value;
+    console.log(value);
     await this.uService.loading({ message: 'Loading ', duration: 300});
     this.fireAuthService.createUser(value)
   }
@@ -31,10 +32,10 @@ export class CreatePage implements OnInit {
   private loadForm() {
     this.form = this.fb.group({
       term: ['false', Validators.required],
-      phone: ['', Validators.required],
-      password: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      name: ['', [Validators.required, Validators.minLength(3)]],
+      phone: ['41998819501', Validators.required],
+      password: ['admin123', Validators.required],
+      email: ['rafa@gmail.com', [Validators.required, Validators.email]],
+      displayName: ['Rafael Rodriguez', [Validators.required, Validators.minLength(3)]],
     });
   }
 }

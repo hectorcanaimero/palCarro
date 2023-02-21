@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
+import { AngularFireAuthGuard, redirectUnauthorizedTo } from '@angular/fire/compat/auth-guard';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['users', 'login']);
 const routes: Routes = [
   {
     path: 'pages',
     loadChildren: () =>
-      import('./pages/pages.module').then( m => m.PagesPageModule)
+      import('./pages/pages.module').then( m => m.PagesPageModule),
+      canActivate: [AngularFireAuthGuard],
+      data: { authGuardPipe: redirectUnauthorizedToLogin }
   },
   {
     path: 'users',
@@ -16,19 +19,7 @@ const routes: Routes = [
     path: '',
     redirectTo: '/pages/home',
     pathMatch: 'full'
-  },
-  {
-    path: 'create',
-    loadChildren: () => import('./modules/users/create/create.module').then( m => m.CreatePageModule)
-  },
-  {
-    path: 'forgot-password',
-    loadChildren: () => import('./modules/users/forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
-  },
-  {
-    path: 'menu',
-    loadChildren: () => import('./modules/menu/menu.module').then( m => m.MenuPageModule)
-  },
+  }
 ];
 
 @NgModule({
