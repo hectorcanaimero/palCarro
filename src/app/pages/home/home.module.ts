@@ -5,16 +5,24 @@ import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
+import { MenusModule } from '@core/widget/menus/menus.module';
 import { HeaderModule } from '@core/widget/header/header.module';
+import { SlidesModule } from '@core/widget/slides/slides.module';
+import { BannerModule } from '@core/widget/banner/banner.module';
+import { DiscoverModule } from '@core/widget/discover/discover.module';
 
 
 @NgModule({
   imports: [
-    CommonModule,
     FormsModule,
     IonicModule,
+    CommonModule,
+    MenusModule,
+    SlidesModule,
     HeaderModule,
-    HomePageRoutingModule
+    BannerModule,
+    DiscoverModule,
+    HomePageRoutingModule,
   ],
   declarations: [HomePage]
 })

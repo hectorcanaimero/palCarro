@@ -22,6 +22,11 @@ const routes: Routes = [
           import('@module/create-order/create-order.module').then(m => m.CreateOrderPageModule)
       },
       {
+        path: 'menu',
+        loadChildren: () =>
+          import('@module/menu/menu.module').then(m => m.MenuPageModule)
+      },
+      {
         path: '',
         redirectTo: '/pages/home',
         pathMatch: 'full'

@@ -1,0 +1,18 @@
+<ng-container>
+<section class="my-4">
+  <swiper
+  [slidesPerView]="1.7"
+  [spaceBetween]="40">
+  <ng-template swiperSlide *ngFor="let item of data">
+    <ion-card>
+      <ion-card-content>
+        <ion-text color="primary">
+          <h3>{{ item.title }}</h3>
+          <p [innerHTML]="item.content | slice:0:35"></p>
+        </ion-text>
+      </ion-card-content>
+    </ion-card>
+  </ng-template>
+</swiper>
+</section>
+</ng-container>

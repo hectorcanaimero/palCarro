@@ -1,0 +1,27 @@
+<ng-container>
+  <ion-item lines="none">
+    <ion-label>Descubra mas</ion-label>
+  </ion-item>
+  <swiper
+  [slidesPerView]="1.5  "
+  [spaceBetween]="30"
+  (swiper)="onSwiper($event)"
+  (slideChange)="onSlideChange()">
+  <ng-template swiperSlide *ngFor="let item of data">
+    <ion-card>
+      <ion-card-header>
+        <img [src]="item.image" [alt]="item.title">
+      </ion-card-header>
+      <ion-card-content>
+        <ion-text color="primary">
+          <h3>{{ item.title }}</h3>
+          <p class="pb-3" [innerHTML]="item.content | slice:0:45"></p>
+          <ion-button mode="ios" (click)="onPage(item)" color="tertiary" size="small">
+            Saber mas
+          </ion-button>
+        </ion-text>
+      </ion-card-content>
+    </ion-card>
+  </ng-template>
+</swiper>
+</ng-container>

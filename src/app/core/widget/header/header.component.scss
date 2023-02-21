@@ -8,6 +8,11 @@ ion-header {
           color: var(--ion-color-warning-shade);
         }
       }
+      .person {
+        height: 40px;
+        --background: rgba(255,255,255,.15);
+        --border-radius: 25px;
+      }
     }
   }
 }
