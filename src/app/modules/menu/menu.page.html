@@ -2,17 +2,17 @@
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-button (click)="onBack()">
-        <ion-icon slot="icon-only" color="tertiary" name="chevron-back-outline"></ion-icon>
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title></ion-title>
+    <img [src]="logo" class="logo d-flex mx-auto">
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-list>
-    <ng-container *ngFor="let item of items">
+  <ion-list class="mt-5">
+    <ng-container *ngFor="let item of items$ | async">
       <ion-item button (click)="onPage(item.action)">
-        <ion-icon slot="start" [name]="item.icon"></ion-icon>
+        <ion-icon *ngIf="item.status" slot="start" [name]="item.icon"></ion-icon>
         <ion-label>{{ item.title }}</ion-label>
       </ion-item>
     </ng-container>

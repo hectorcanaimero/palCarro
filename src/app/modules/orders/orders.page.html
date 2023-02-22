@@ -1,26 +1,20 @@
-<app-header [backButton]="true" href="/pages/home"></app-header>
+<app-header [home]="true" href="/pages/home"></app-header>
 <ion-content>
-  <div class="container my-3">
-    <ion-button (click)="onAdd()" expand="block" color="primary" fill="outline">
-      Agregar
-    </ion-button>
-  </div>
   <ion-list>
-    <ion-item *ngFor="let item of [1,1,1,1,1,1,1,1,1,1,1,1,1,1]">
-      <ion-thumbnail slot="start">
-        <ion-skeleton-text [animated]="true"></ion-skeleton-text>
-      </ion-thumbnail>
+    <ion-item *ngFor="let item of items$ | async">
       <ion-label>
-        <h3>
-          <ion-skeleton-text [animated]="true" style="width: 80%;"></ion-skeleton-text>
-        </h3>
-        <p>
-          <ion-skeleton-text [animated]="true" style="width: 60%;"></ion-skeleton-text>
-        </p>
-        <p>
-          <ion-skeleton-text [animated]="true" style="width: 30%;"></ion-skeleton-text>
-        </p>
+        <p>Codigo {{ item.id }}</p>
       </ion-label>
+      <ion-buttons slot="end">
+        <ion-button>
+          <ion-icon slot="icon-only" color="tertiary" name="chatbubbles"></ion-icon>
+        </ion-button>
+      </ion-buttons>
     </ion-item>
   </ion-list>
 </ion-content>
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button (click)="openItem()">
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+</ion-fab>

@@ -1,24 +1,28 @@
 <ng-container >
   <div class="container my-4">
     <div class="row g-3">
-      <div class="col-4 mb-1" *ngFor="let item of data | slice:0:toogle ? 1000:3">
-        <ion-card (click)="onGoPage(item.action)">
-          <ion-card-content>
-            <ion-icon [name]="item.icon"></ion-icon>
-            <ion-label>{{ item.title }}</ion-label>
-          </ion-card-content>
-        </ion-card>
-      </div>
-      <div class="col-12">
-        <ion-button (click)="onToggle()" expand="block" fill="clear" size="small">
-          <ion-icon slot="icon-only"
-            [name]="
-            toogle ?
-            'chevron-up-outline' :
-            'chevron-down-outline'"
-          ></ion-icon>
-        </ion-button>
-      </div>
+      <ng-container *ngFor="let item of items$ | async | slice:0:toogle ? 1000:3">
+        <div class="col-4 mb-1" *ngIf="item.status">
+          <ion-card (click)="onGoPage(item.action)">
+            <ion-card-content>
+              <ion-icon [name]="item.icon"></ion-icon>
+              <ion-label>{{ item.title }}</ion-label>
+            </ion-card-content>
+          </ion-card>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="total > 3">
+        <div class="col-12">
+          <ion-button (click)="onToggle()" expand="block" fill="clear" size="small">
+            <ion-icon slot="icon-only"
+              [name]="
+              toogle ?
+              'chevron-up-outline' :
+              'chevron-down-outline'"
+            ></ion-icon>
+          </ion-button>
+        </div>
+      </ng-container>
     </div>
   </div>
 </ng-container>

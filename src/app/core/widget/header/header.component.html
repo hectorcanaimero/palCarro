@@ -1,7 +1,7 @@
 <ion-header class="ion-no-border">
   <ion-toolbar mode="ios">
     <ion-buttons slot="start">
-      <ng-container *ngIf="backButton; else menu">
+      <ng-container *ngIf="home; else menu">
         <ion-button (click)="onGoHome(href)">
           <ion-icon slot="icon-only" name="home" color="warning"></ion-icon>
         </ion-button>
@@ -14,8 +14,13 @@
     </ion-buttons>
     <ion-title></ion-title>
     <ion-buttons slot="end">
-      <ion-button>
-        <ion-icon slot="icon-only" name="basket-outline"></ion-icon>
+      <ion-button (click)="onGoCart()">
+        <ion-icon slot="icon-only"
+        [name]="(total$ | async) === 0 ? 'basket-outline': 'basket'">
+      </ion-icon>
+      <ng-container *ngIf="(total$ | async) > 0">
+        <ion-badge color="light" mode="ios">{{ (total$ | async) }}</ion-badge>
+      </ng-container>
       </ion-button>
       <ion-button>
         <ion-icon slot="icon-only" name="notifications-outline"></ion-icon>

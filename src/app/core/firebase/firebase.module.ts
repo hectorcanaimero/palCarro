@@ -10,8 +10,8 @@ import { providePerformance, getPerformance } from '@angular/fire/performance';
 import { provideRemoteConfig, getRemoteConfig } from '@angular/fire/remote-config';
 import { provideStorage, getStorage } from '@angular/fire/storage';
 import { environment } from 'src/environments/environment';
-import { AngularFireAuthModule, LANGUAGE_CODE, SETTINGS as AUTH_SETTINGS, USE_DEVICE_LANGUAGE } from '@angular/fire/compat/auth';
 import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule, LANGUAGE_CODE, SETTINGS as AUTH_SETTINGS } from '@angular/fire/compat/auth';
 
 
 
@@ -20,6 +20,7 @@ import { AngularFireModule } from '@angular/fire/compat';
   imports: [
     CommonModule,
     AngularFireAuthModule,
+    AngularFireModule.initializeApp(environment.firebase),
     provideStorage(() => getStorage()),
     provideDatabase(() => getDatabase()),
     // provideAnalytics(() => getAnalytics()),
@@ -28,7 +29,6 @@ import { AngularFireModule } from '@angular/fire/compat';
     provideMessaging(() => getMessaging()),
     providePerformance(() => getPerformance()),
     provideRemoteConfig(() => getRemoteConfig()),
-    AngularFireModule.initializeApp(environment.firebase),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
   ],
   providers:[

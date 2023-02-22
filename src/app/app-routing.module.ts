@@ -19,6 +19,10 @@ const routes: Routes = [
     path: '',
     redirectTo: '/pages/home',
     pathMatch: 'full'
+  },
+  {
+    path: 'carts',
+    loadChildren: () => import('./modules/carts/carts.module').then( m => m.CartsPageModule)
   }
 ];
 

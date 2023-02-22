@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UtilsService } from '@core/services/utils.service';
+import * as fs from '@angular/fire/firestore';
+import { Firestore } from "@angular/fire/firestore";
+import { Observable, tap } from 'rxjs';
 
 @Component({
   selector: 'app-menus',
@@ -7,14 +10,29 @@ import { UtilsService } from '@core/services/utils.service';
   styleUrls: ['./menus.component.scss'],
 })
 export class MenusComponent implements OnInit {
-
+  items$!: Observable<any[]>;
   toogle: boolean = false;
-  data = mockMenusData;
+  total!: number;
   constructor(
-    private uService: UtilsService
+    private fire: Firestore,
+    private uService: UtilsService,
   ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getData();
+  }
+
+  getData() {
+    const query = fs.query(
+      fs.collection(this.fire, `menus`),
+      fs.where('type', '==', 1),
+      fs.orderBy('order')
+    );
+    this.items$ = fs.collectionData(query, { idField: 'id' }).pipe(
+      tap((res: any) => this.total = res.length)
+    ) as Observable<any[]>
+    this.items$.subscribe(res => console.log(res));
+  }
 
   onGoPage(url: string) {
     this.uService.navigateFoward(url);
@@ -27,26 +45,6 @@ export class MenusComponent implements OnInit {
 }
 
 export const mockMenusData = [
-  {
-    icon: 'reader-outline',
-    title: 'Ordenes',
-    action: '/pages/orders'
-  },
-  {
-    icon: 'calendar-outline',
-    title: 'Historico',
-    action: ''
-  },
-  {
-    icon: 'barcode-outline',
-    title: 'Rastreamento',
-    action: ''
-  },
-  {
-    icon: 'person-outline',
-    title: 'Perfil',
-    action: '/users/profile'
-  },
   {
     icon: 'notifications-outline',
     title: 'Notificaciones',

@@ -25,6 +25,7 @@ export class HomePage implements OnInit, AfterViewInit {
 
   async getData() {
     this.user = await this.storage.find('oUser');
+    console.log(this.user);
   }
 
   onOrder() {

@@ -21,9 +21,9 @@ export class FireAuthService {
     private uService: UtilsService,
     private storage: StorageService,
   ) {
-    this.auth.authState.subscribe(async (user) => {
+    this.auth.authState.subscribe((user) => {
       if (user) {
-        await this.storage.create('oUser', user);
+        this.getUser(user.uid);
       }
     })
   }
@@ -63,12 +63,10 @@ export class FireAuthService {
   forgotPassword(email: string) {
     return this.auth.sendPasswordResetEmail(email)
     .then(async (res: any) => {
-      console.log(res);
       await this.setAlert('Info',
         'Fue enviado a su email, instrucciones para resetear tu contraseña!')
     })
     .catch(async(error: any) => {
-      console.log(error);
       await this.setAlert('Error', error.message)
     })
   }
@@ -78,6 +76,13 @@ export class FireAuthService {
     await this.storage.delete();
     this.auth.signOut();
     timer(1000).subscribe(() => this.uService.navigateUrl('/users/login'))
+  }
+
+  private async getUser(uid: string) {
+    const docRef = fs.doc(this.fireStore, 'users', uid);
+    const docSnap = await fs.getDoc(docRef);
+    const item = docSnap.data();
+    await this.storage.create('oUser', item);
   }
 
   private async addUserData(user: any, uid: string) {

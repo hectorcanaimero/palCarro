@@ -2,6 +2,9 @@ import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { FireAuthService } from '@core/firebase/fireauth.service';
 import { MobileService } from '@core/services/mobile.service';
 import { UtilsService } from '@core/services/utils.service';
+import * as fs from '@angular/fire/firestore';
+import { Firestore } from "@angular/fire/firestore";
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-menu',
@@ -9,22 +12,28 @@ import { UtilsService } from '@core/services/utils.service';
   styleUrls: ['./menu.page.scss'],
 })
 export class MenuPage implements OnInit {
-
+  logo: string = 'https://firebasestorage.googleapis.com/v0/b/palcarro-c7561.appspot.com/o/apps%2Flogo.png?alt=media&token=ed915b70-4910-4145-ba23-2074874bdfdc';
   version!: string;
-  items = mockMenuSideData;
+  items$!: Observable<any[]>;
   constructor(
     private uService: UtilsService,
     private mobileService: MobileService,
     private fireAuthService: FireAuthService,
-    private viewContainerRef: ViewContainerRef,
+    private fire: Firestore,
   ) { }
 
   ngOnInit() {
-    console.log(this.items);
+    this.getVersion();
+    this.getData();
   }
 
-  getData() {
-    this.getVersion();
+  getData(type: number = 0) {
+    const query = fs.query(
+      fs.collection(this.fire, `menus`),
+      fs.where('type', '==', type),
+      fs.orderBy('order')
+    );
+    this.items$ = fs.collectionData(query, { idField: 'id' }) as Observable<any[]>;
   }
 
   onPage(url: any) {
@@ -47,31 +56,3 @@ export class MenuPage implements OnInit {
     }
   }
 }
-
-export const mockMenuSideData = [
-  {
-    icon: 'person-outline',
-    title: 'Perfil',
-    action: '/users/profile',
-  },
-  {
-    icon: 'notifications-outline',
-    title: 'Notificaciones',
-    action: '',
-  },
-  {
-    icon: 'reader-outline',
-    title: 'Ordenes',
-    action: '/pages/orders',
-  },
-  {
-    icon: 'calendar-outline',
-    title: 'Historico',
-    action: '',
-  },
-  {
-    icon: 'barcode-outline',
-    title: 'Rastreamento',
-    action: '',
-  }
-]

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { InitService } from '@core/services/init.service';
 import { MobileService } from './core/services/mobile.service';
 
 @Component({
@@ -8,10 +9,12 @@ import { MobileService } from './core/services/mobile.service';
 })
 export class AppComponent implements OnInit {
   constructor(
+    private iService: InitService,
     private mobileService: MobileService,
   ) {}
 
   async ngOnInit() {
     await this.mobileService.initializeApp();
+    this.iService.initApp();
   }
 }
