@@ -1,0 +1,36 @@
+<app-header [menu]="false" back="/pages/orders"></app-header>
+<ion-content>
+  <ion-list>
+    <ion-list-header>
+      <ion-label>Productos</ion-label>
+    </ion-list-header>
+    <ng-container *ngIf="(items$ | async) as items;">
+      <ion-item *ngFor="let item of items">
+        <ion-badge slot="start" mode="ios">{{ item.qtd }}</ion-badge>
+        <ion-label>
+          <h2>{{ item.total || 0 | currency }}</h2>
+          <p>{{ item.brand }} {{ item.model }} {{ item.year }}</p>
+          <h3 class="ion-text-wrap">{{ item.product }}</h3>
+        </ion-label>
+        <ion-buttons slot="end">
+          <ion-button (click)="onDelete(item.id)">
+            <ion-icon slot="icon-only" name="trash-outline" color="medium"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-item>
+    </ng-container>
+  </ion-list>
+</ion-content>
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button color="dark">
+    <ion-icon name="chevron-up-outline"></ion-icon>
+  </ion-fab-button>
+  <ion-fab-list side="top">
+    <ion-fab-button color="tertiary" (click)="onProduct()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-button color="warning" (click)="onChat()">
+      <ion-icon name="chatbubbles"></ion-icon>
+    </ion-fab-button>
+  </ion-fab-list>
+</ion-fab>

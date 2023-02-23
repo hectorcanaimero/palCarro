@@ -45,12 +45,17 @@ export class OrdersPage implements OnInit {
     console.log(this.form.value);
   }
 
+  onView(id: string) {
+    console.log(id);
+    this.uService.navigateFoward(`/pages/orders/view/${id}`);
+  }
+
   async openItem() {
     await this.uService.modal({
       mode: 'ios',
       initialBreakpoint: .9,
-      component: CreateOrderPage,
       breakpoints: [0, .45, .9],
+      component: CreateOrderPage,
     });
   }
 

@@ -16,9 +16,13 @@ import { StorageService } from '@core/services/storage.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  @Input() href = '';
-  @Input() home = false;
+  @Input() href: string = '';
+  @Input() home: boolean = false;
+  @Input() menu: boolean = true;
+  @Input() snackBar: boolean = true;
+  @Input() back!: string;
   total$!: Observable<any>;
+  @Input() title: string = '';
 
   constructor(
     private fire: Firestore,
@@ -43,7 +47,6 @@ export class HeaderComponent implements OnInit {
         fs.collection(this.fire, `orders/${res[0].id}/product`)
       ).pipe(map((data: any) => data.length)))
     );
-    this.total$.subscribe(res => console.log(res));
   }
 
 
@@ -53,6 +56,11 @@ export class HeaderComponent implements OnInit {
 
   onGoHome(url: string) {
     this.uService.navigateUrl(url);
+  }
+
+  onGoBack(url: string) {
+    console.log(url);
+    this.uService.navigateBack(url);
   }
 
   async onGoCart() {

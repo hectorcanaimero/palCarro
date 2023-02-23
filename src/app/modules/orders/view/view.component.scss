@@ -1,0 +1,16 @@
+ion-list {
+  ion-item {
+    ion-badge {
+      --background: none;
+      --color: var(--ion-color-dark);
+      font-size: 18px;
+    }
+    ion-buttons {
+      ion-button {
+        ion-icon {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,36 @@
+<app-header
+  [menu]="false"
+  [snackBar]="false"
+  title="Chat Orden"
+  back="/pages/orders/view/{{uid}}">
+</app-header>
+<ion-content class="ion-padding">
+  <h1>{{ message }}</h1>
+  <h1>{{ message.length || 0 }}</h1>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-input
+      spellcheck="true"
+      autocomplete="true"
+      autocorrect="true"
+      [(ngModel)]="message"
+      (keyup.enter)="onSubmit()"
+      (ngModelChange)="onEventInput($event)"
+      placeholder="Digite su mensaje...">
+    </ion-input>
+    <!-- <ion-input [(ngModel)]="message" type="text" placeholder="Awesome Input"></ion-input> -->
+    <ion-buttons slot="end">
+      <ng-container *ngIf="message.length > 0; else setCamera">
+        <ion-button class="circle-send">
+          <ion-icon slot="icon-only" name="send"></ion-icon>
+        </ion-button>
+      </ng-container>
+      <ng-template #setCamera>
+        <ion-button (click)="takePicture()">
+          <ion-icon slot="icon-only" name="camera"></ion-icon>
+        </ion-button>
+      </ng-template>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

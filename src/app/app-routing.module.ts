@@ -23,6 +23,10 @@ const routes: Routes = [
   {
     path: 'carts',
     loadChildren: () => import('./modules/carts/carts.module').then( m => m.CartsPageModule)
+  },
+  {
+    path: 'chat',
+    loadChildren: () => import('./modules/chat/chat.module').then( m => m.ChatPageModule)
   }
 ];
 

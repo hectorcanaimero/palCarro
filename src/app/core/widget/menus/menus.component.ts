@@ -31,7 +31,6 @@ export class MenusComponent implements OnInit {
     this.items$ = fs.collectionData(query, { idField: 'id' }).pipe(
       tap((res: any) => this.total = res.length)
     ) as Observable<any[]>
-    this.items$.subscribe(res => console.log(res));
   }
 
   onGoPage(url: string) {

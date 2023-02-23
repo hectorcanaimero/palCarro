@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import * as fs from '@angular/fire/firestore';
@@ -6,8 +6,6 @@ import { Firestore } from '@angular/fire/firestore';
 
 import { UtilsService } from '@core/services/utils.service';
 import { StorageService } from '@core/services/storage.service';
-import { from, Observable, of } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-create-order',
@@ -15,6 +13,7 @@ import { map, switchMap } from 'rxjs/operators';
   styleUrls: ['./create-order.page.scss'],
 })
 export class CreateOrderPage implements OnInit {
+  @Input() order!: string;
   form!: FormGroup;
   user!: any;
   uid!: string;
@@ -28,14 +27,16 @@ export class CreateOrderPage implements OnInit {
   async ngOnInit() {
     this.loadForm();
     this.user = await this.storage.find('oUser');
-    console.log(this.user);
-    this.setCreateOrder();
+    if (!this.order) {
+      this.setCreateOrder();
+    } else {
+      this.uid = this.order;
+    }
   }
 
   async onSubmit() {
     if (this.form.invalid) return;
     const { value }: any = this.form;
-    console.log(value);
     await this.addItemByOrder(value);
     await this.uService.modalDimiss();
   }
@@ -50,7 +51,6 @@ export class CreateOrderPage implements OnInit {
     .subscribe(async (res: any) => {
       if (res.length === 0) {
         const create = await this.createOrder();
-        console.log('CREATE', create.id);
         this.uid = create.id;
       } else {
         this.uid = res[0].id;
